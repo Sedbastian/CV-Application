@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import uniqid from "uniqid";
 import InfoPers from "./components/InfoPers";
-import Habilidades from "./components/Habilidades";
+import Section from "./components/Section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,7 +23,9 @@ class App extends Component {
 				{ id: uniqid(), nombre: "una", info: "selha" },
 				{ id: uniqid(), nombre: "dosa", info: "polio" },
 				{ id: uniqid(), nombre: "terca", info: "mili" }
-			]
+			],
+			idiomas: [{ id: uniqid(), nombre: "iadsdei", info: "blopa" }],
+			experiencia: [{ id: uniqid(), nombre: "daiichi", info: "sohji" }]
 		};
 	}
 
@@ -34,30 +36,49 @@ class App extends Component {
 		this.setState(changeObj);
 	};
 
-	addSkill = () => {
-		this.setState({
-			habilidades: this.state.habilidades.concat({
-				id: uniqid(),
-				nombre: "",
-				info: ""
-			})
+	addItem = stateName => {
+		let addObj = {};
+		addObj[stateName] = this.state[stateName].concat({
+			id: uniqid(),
+			nombre: "",
+			info: ""
 		});
+		this.setState(addObj);
 	};
 
 	render() {
 		return (
-			<div className="app">
+			<main className="app">
 				<h1>CV App</h1>
 				<InfoPers
 					updateMethod={this.updateInfo}
 					infoPersState={this.state.infoPers}
 				/>
-				<Habilidades
+				<Section
+					stateName="habilidades"
+					heading="Habilidades"
+					singular="Habilidad"
 					updateMethod={this.updateInfo}
-					addSkillMethod={this.addSkill}
-					habilidadesState={this.state.habilidades}
+					addItemMethod={this.addItem}
+					sectionState={this.state.habilidades}
 				/>
-			</div>
+				<Section
+					stateName="idiomas"
+					heading="Idiomas"
+					singular="Idioma"
+					updateMethod={this.updateInfo}
+					addItemMethod={this.addItem}
+					sectionState={this.state.idiomas}
+				/>
+				<Section
+					stateName="experiencia"
+					heading="Experiencia Laboral"
+					singular="Experiencia Laboral"
+					updateMethod={this.updateInfo}
+					addItemMethod={this.addItem}
+					sectionState={this.state.experiencia}
+				/>
+			</main>
 		);
 	}
 }

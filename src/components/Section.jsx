@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import "./styles/Habilidades.css";
+import "./styles/Section.css";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
 
 // } from "@fortawesome/free-solid-svg-icons";
 
-class Habilidades extends Component {
+class Section extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,11 +14,12 @@ class Habilidades extends Component {
 		};
 	}
 
-	onSubmitHabilidades = e => {
+	onSubmitSection = e => {
 		e.preventDefault();
-		let stateUpdate = { habilidades: [] };
+		let stateUpdate = {};
+		stateUpdate[this.props.stateName] = [];
 		e.target.querySelectorAll("div").forEach(div => {
-			stateUpdate.habilidades.push({
+			stateUpdate[this.props.stateName].push({
 				id: uniqid(),
 				nombre: div.children[1].value,
 				info: div.children[3].value
@@ -33,19 +34,19 @@ class Habilidades extends Component {
 	};
 
 	render() {
-		const arrHabs = this.props.habilidadesState;
+		const { stateName, heading, singular, sectionState } = this.props;
 
-		let habilidadesRender;
+		let sectionRender;
 		if (this.state.action === "Save") {
-			habilidadesRender = (
+			sectionRender = (
 				<div>
-					<form onSubmit={this.onSubmitHabilidades} autoComplete="on">
-						{arrHabs.map((habilidad, index) => {
+					<form onSubmit={this.onSubmitSection} autoComplete="on">
+						{sectionState.map((habilidad, index) => {
 							const iNom = `${index}nombre`;
 							const iInf = `${index}info`;
 							return (
 								<div key={habilidad.id}>
-									<label htmlFor={iNom}>Habilidad</label>
+									<label htmlFor={iNom}>{singular}</label>
 									<input
 										type="text"
 										id={iNom}
@@ -64,24 +65,24 @@ class Habilidades extends Component {
 						})}
 						<button
 							type="button"
-							onClick={this.props.addSkillMethod}
+							onClick={() => {
+								this.props.addItemMethod(stateName);
+							}}
 						>
-							Agregar Habilidad
+							Agregar {singular}
 						</button>
 						<button type="submit">Guardar cambios</button>
 					</form>
 				</div>
 			);
 		} else if (this.state.action === "Edit") {
-			habilidadesRender = (
+			sectionRender = (
 				<div>
-					{arrHabs.map((habilidad, index) => {
-						const iNom = `${index}nombre`;
-						const iInf = `${index}info`;
+					{sectionState.map(item => {
 						return (
-							<div key={habilidad.id} className="habilidad">
-								<div className="nombre">{habilidad.nombre}</div>
-								<div className="info">{habilidad.info}</div>
+							<div key={item.id} className="item">
+								<div className="nombre">{item.nombre}</div>
+								<div className="info">{item.info}</div>
 							</div>
 						);
 					})}
@@ -91,16 +92,16 @@ class Habilidades extends Component {
 		}
 
 		return (
-			<div>
-				<h2>Habilidades</h2>
+			<section>
+				<h2>{heading}</h2>
 				<div>
-					<div>Habilidad</div>
+					<div>{singular}</div>
 					<div>Información Adicional</div>
 				</div>
-				{habilidadesRender}
-			</div>
+				{sectionRender}
+			</section>
 		);
 	}
 }
 
-export default Habilidades;
+export default Section;

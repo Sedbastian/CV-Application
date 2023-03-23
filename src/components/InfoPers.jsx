@@ -163,10 +163,10 @@ class InfoPers extends Component {
 		}
 
 		return (
-			<div>
+			<section>
 				<h2>Información Personal</h2>
 				{infoPersRender}
-			</div>
+			</section>
 		);
 	}
 }
