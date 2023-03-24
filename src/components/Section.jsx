@@ -15,17 +15,24 @@ class Section extends Component {
 	}
 
 	onSubmitSection = e => {
+		const { stateName, editableFields, updateMethod } = this.props;
 		e.preventDefault();
 		let stateUpdate = {};
-		stateUpdate[this.props.stateName] = [];
-		e.target.querySelectorAll("div").forEach(div => {
-			stateUpdate[this.props.stateName].push({
+		stateUpdate[stateName] = [];
+		e.target.querySelectorAll("form>div").forEach(div => {
+			let nombre;
+			if (editableFields === "true") {
+				nombre = div.children[0].value;
+			} else if (editableFields === "false") {
+				nombre = div.children[0].textContent;
+			}
+			stateUpdate[stateName].push({
 				id: uniqid(),
-				nombre: div.children[1].value,
-				info: div.children[3].value
+				nombre: nombre,
+				info: div.children[1].value
 			});
 		});
-		this.props.updateMethod(stateUpdate);
+		updateMethod(stateUpdate);
 		this.setState({ action: "Edit" });
 	};
 
@@ -34,43 +41,66 @@ class Section extends Component {
 	};
 
 	render() {
-		const { stateName, heading, singular, sectionState } = this.props;
+		const {
+			stateName,
+			heading,
+			singular,
+			editableFields,
+			addItemMethod,
+			sectionState
+		} = this.props;
+
+		let singularOtherInfo = null;
+		if (singular !== "null") {
+			singularOtherInfo = (
+				<div>
+					<div>{singular}</div>
+					<div>Información Adicional</div>
+				</div>
+			);
+		}
 
 		let sectionRender;
 		if (this.state.action === "Save") {
+			let addItemButton = null;
+			if (addItemMethod !== "null") {
+				addItemButton = (
+					<button
+						type="button"
+						onClick={() => {
+							addItemMethod(stateName);
+						}}
+					>
+						Agregar {singular}
+					</button>
+				);
+			}
 			sectionRender = (
 				<div>
 					<form onSubmit={this.onSubmitSection} autoComplete="on">
-						{sectionState.map((habilidad, index) => {
-							const iNom = `${index}nombre`;
-							const iInf = `${index}info`;
-							return (
-								<div key={habilidad.id}>
-									<label htmlFor={iNom}>{singular}</label>
+						{sectionState.map((item, index) => {
+							let inputOrDiv;
+							if (editableFields === "true") {
+								inputOrDiv = (
 									<input
 										type="text"
-										id={iNom}
-										defaultValue={habilidad.nombre}
+										defaultValue={item.nombre}
 									/>
-									<label htmlFor={iInf}>
-										Información Adicional
-									</label>
+								);
+							} else if (editableFields === "false") {
+								inputOrDiv = <div>{item.nombre}</div>;
+							}
+							return (
+								<div key={item.id}>
+									{inputOrDiv}
 									<input
 										type="text"
-										id={iInf}
-										defaultValue={habilidad.info}
+										defaultValue={item.info}
 									/>
 								</div>
 							);
 						})}
-						<button
-							type="button"
-							onClick={() => {
-								this.props.addItemMethod(stateName);
-							}}
-						>
-							Agregar {singular}
-						</button>
+						{addItemButton}
 						<button type="submit">Guardar cambios</button>
 					</form>
 				</div>
@@ -94,10 +124,7 @@ class Section extends Component {
 		return (
 			<section>
 				<h2>{heading}</h2>
-				<div>
-					<div>{singular}</div>
-					<div>Información Adicional</div>
-				</div>
+				{singularOtherInfo}
 				{sectionRender}
 			</section>
 		);

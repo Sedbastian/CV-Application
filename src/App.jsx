@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import uniqid from "uniqid";
-import InfoPers from "./components/InfoPers";
 import Section from "./components/Section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListCheck } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
 	constructor() {
@@ -25,7 +24,16 @@ class App extends Component {
 				{ id: uniqid(), nombre: "terca", info: "mili" }
 			],
 			idiomas: [{ id: uniqid(), nombre: "iadsdei", info: "blopa" }],
-			experiencia: [{ id: uniqid(), nombre: "daiichi", info: "sohji" }]
+			experiencia: [{ id: uniqid(), nombre: "daiichi", info: "sohji" }],
+			personal: [
+				{ id: uniqid(), nombre: "nombre", info: "" },
+				{ id: uniqid(), nombre: "ocupacion", info: "" },
+				{ id: uniqid(), nombre: "email", info: "" },
+				{ id: uniqid(), nombre: "telefono", info: "" },
+				{ id: uniqid(), nombre: "direccion", info: "" },
+				{ id: uniqid(), nombre: "nacimiento", info: "" },
+				{ id: uniqid(), nombre: "nacionalidad", info: "" }
+			]
 		};
 	}
 
@@ -49,15 +57,21 @@ class App extends Component {
 	render() {
 		return (
 			<main className="app">
-				<h1>CV App</h1>
-				<InfoPers
+				<h1><FontAwesomeIcon icon={faBriefcase}/> CV App</h1>
+				<Section
+					stateName="personal"
+					heading="Información Personal"
+					singular="null"
+					editableFields="false"
 					updateMethod={this.updateInfo}
-					infoPersState={this.state.infoPers}
+					addItemMethod="null"
+					sectionState={this.state.personal}
 				/>
 				<Section
 					stateName="habilidades"
 					heading="Habilidades"
 					singular="Habilidad"
+					editableFields="true"
 					updateMethod={this.updateInfo}
 					addItemMethod={this.addItem}
 					sectionState={this.state.habilidades}
@@ -66,6 +80,7 @@ class App extends Component {
 					stateName="idiomas"
 					heading="Idiomas"
 					singular="Idioma"
+					editableFields="true"
 					updateMethod={this.updateInfo}
 					addItemMethod={this.addItem}
 					sectionState={this.state.idiomas}
@@ -74,6 +89,7 @@ class App extends Component {
 					stateName="experiencia"
 					heading="Experiencia Laboral"
 					singular="Experiencia Laboral"
+					editableFields="true"
 					updateMethod={this.updateInfo}
 					addItemMethod={this.addItem}
 					sectionState={this.state.experiencia}
