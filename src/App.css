@@ -1,3 +1,56 @@
+html {
+	background-color: #999;
+}
+
 .app {
 	text-align: center;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	align-items: center;
+	background-color: #333;
+	color: rgb(192, 128, 255);
+	border-bottom-color: #555;
+	border-bottom-style: solid;
+	border-bottom-width: 0.3rem;
+}
+
+main {
+	background-color: #999;
+	margin-top: 6rem;
+	margin-bottom: 3rem;
+	display: flex;
+	flex-direction: column;
+	/* flex-wrap: wrap; */
+	align-items: center;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	text-align: center;
+	background-color: black;
+	opacity: 0.7;
+	color: blueviolet;
+}
+
+.footerTag a {
+	color: blueviolet;
+	text-decoration: none;
+}
+
+.footerTag a:hover,
+.footerTag :not(a):hover {
+	color: orange;
+}
+
+.footerTag :not(a) {
+	color: rgb(192, 255, 64);
 }

@@ -1,0 +1,153 @@
+section {
+	margin: 1rem;
+	padding: 2rem;
+	background-color: #555;
+	text-align: center;
+	border-radius: 0.5rem;
+	color: #ccc;
+	font-weight: bold;
+	box-shadow: 0 0 0.5rem whitesmoke;
+}
+
+section form {
+	display: flex;
+	flex-direction: column;
+}
+
+section form > div {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	/* gap: 0.5rem; */
+	/* justify-items: flex-start; */
+	justify-content: space-around;
+}
+
+input {
+	margin: 0.5rem;
+	padding: 0.8rem;
+	border-radius: 2rem;
+	border-style: solid;
+	border-width: 0.15rem;
+	border-color: #555;
+	background-color: #999;
+	color: #333;
+	font-size: 1.3rem;
+}
+
+input:focus {
+	outline: 0;
+}
+
+input:hover {
+	border: 0.15rem solid rgb(192, 128, 255);
+}
+
+section h2 {
+	font-weight: 900;
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+section:nth-child(1) h2 {
+	color: rgb(255, 130, 130);
+}
+
+section:nth-child(2) h2 {
+	color: rgb(255, 207, 130);
+}
+
+section:nth-child(3) h2 {
+	color: rgb(211, 255, 130);
+}
+
+section:nth-child(4) h2 {
+	color: rgb(130, 255, 140);
+}
+
+section:nth-child(5) h2 {
+	color: rgb(130, 255, 238);
+}
+
+section:nth-child(6) h2 {
+	color: rgb(130, 174, 255);
+}
+
+section:nth-child(7) h2 {
+	color: rgb(188, 130, 255);
+}
+
+section:nth-child(8) h2 {
+	color: rgb(255, 130, 238);
+}
+
+button {
+	align-self: flex-end;
+	gap: 1rem;
+	display: flex;
+	align-items: center;
+	border-style: none;
+	margin: 0.5rem;
+	margin-top: 1.5rem;
+	padding: 1rem;
+	padding-right: 1.5rem;
+	background-image: linear-gradient(45deg, #654ea3, #eb5895);
+	color: rgb(255, 217, 184);
+	font-size: 1rem;
+	font-weight: 900;
+	border-radius: 2rem;
+}
+
+button:hover {
+	transform: scale(1.05);
+}
+
+button .icon {
+	font-size: 2rem;
+}
+
+button .pipe {
+	font-size: 1.5rem;
+	border-left: 0.1rem solid rgb(255, 217, 184);
+}
+
+button[type="button"] {
+	align-self: flex-start;
+	/* padding: 0.8rem; */
+	padding: 0.7rem 2rem 0.7rem 2rem;
+}
+
+section form.editableFields-false {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	justify-items: center;
+}
+
+.notEditable0 {
+	grid-row: 1 / 2;
+	grid-column: 1 / 2;
+}
+
+.notEditable1 {
+	grid-row: 2 / 3;
+	grid-column: 1 / 2;
+}
+
+.notEditable2 {
+	grid-row: 1 / 3;
+	grid-column: 2 / 3;
+	justify-self: center;
+}
+
+img {
+	width: 8rem;
+	border-style: solid;
+	border-color: black;
+	border-width: 0.1rem;
+	border-radius: 0.5rem;
+	background-color: #999;
+}
+
+img:hover {
+	opacity: 0.7;
+}
