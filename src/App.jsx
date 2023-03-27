@@ -12,6 +12,7 @@ import {
 	faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+// import astronaut from "./user-astronaut-solid.svg";
 
 class App extends Component {
 	constructor() {
@@ -21,11 +22,11 @@ class App extends Component {
 				{ id: uniqid(), field: "Nombre completo", info: "" },
 				{ id: uniqid(), field: "Ocupación", info: "" },
 				{ id: uniqid(), field: "image", info: "" },
-				{ id: uniqid(), field: "Email", info: "" },
-				{ id: uniqid(), field: "Teléfono", info: "" },
-				{ id: uniqid(), field: "Dirección", info: "" },
-				{ id: uniqid(), field: "Fecha de Nacimiento", info: "" },
-				{ id: uniqid(), field: "Nacionalidad", info: "" }
+				{ id: uniqid(), field: "Email", info: "", icon: faEnvelope },
+				{ id: uniqid(), field: "Teléfono", info: "", icon: faPhone },
+				{ id: uniqid(), field: "Dirección", info: "", icon: faLocationDot },
+				{ id: uniqid(), field: "Fecha de Nacimiento", info: "", icon: faCakeCandles },
+				{ id: uniqid(), field: "Nacionalidad", info: "", icon: faGlobe }
 			],
 			habilidades: [
 				{ id: uniqid(), field: "una", info: "selha" },
@@ -62,14 +63,6 @@ class App extends Component {
 		this.setState(addObj);
 	};
 
-	iconsPersonal = {
-		email: faEnvelope,
-		telefono: faPhone,
-		direccion: faLocationDot,
-		nacimiento: faCakeCandles,
-		nacionalidad: faGlobe
-	};
-
 	render() {
 		return (
 			<div className="app">
@@ -85,7 +78,6 @@ class App extends Component {
 						singular="null"
 						editableFields="false"
 						updateMethod={this.updateInfo}
-						icons={this.iconsPersonal}
 						addItemMethod="null"
 						fromToFields="false"
 						sectionState={this.state.personal}
@@ -96,7 +88,6 @@ class App extends Component {
 						singular="Habilidad"
 						editableFields="true"
 						updateMethod={this.updateInfo}
-						icons="null"
 						addItemMethod={this.addItem}
 						fromToFields="false"
 						sectionState={this.state.habilidades}
@@ -107,7 +98,6 @@ class App extends Component {
 						singular="Idioma"
 						editableFields="true"
 						updateMethod={this.updateInfo}
-						icons="null"
 						addItemMethod={this.addItem}
 						fromToFields="false"
 						sectionState={this.state.idiomas}
@@ -118,7 +108,6 @@ class App extends Component {
 						singular="Experiencia Laboral"
 						editableFields="true"
 						updateMethod={this.updateInfo}
-						icons="null"
 						addItemMethod={this.addItem}
 						fromToFields="true"
 						sectionState={this.state.experiencia}

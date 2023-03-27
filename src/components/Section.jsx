@@ -19,25 +19,42 @@ class Section extends Component {
 	}
 
 	onSubmitSection = e => {
-		const { stateName, editableFields, updateMethod, fromToFields } =
-			this.props;
+		const {
+			stateName,
+			sectionState,
+			editableFields,
+			updateMethod,
+			fromToFields
+		} = this.props;
 		e.preventDefault();
 		let stateUpdate = {};
 		stateUpdate[stateName] = [];
-		e.target.querySelectorAll("form>div").forEach(div => {
+		e.target.querySelectorAll("form>div").forEach((div, index) => {
 			let field;
-			const info = div.children[1].value;
-			if (editableFields === "true") {
-				field = div.children[0].value;
-			} else if (editableFields === "false") {
-				field = div.children[0].textContent;
+			let info;
+			let icon = "";
+			if (stateName === "personal" && index === 2) {
+				field = "image";
+				info = div.children[1].src;
+			} else if (!(stateName === "personal" && index === 2)) {
+				info = div.children[1].value;
+				if (editableFields === "true") {
+					field = div.children[0].value;
+				} else if (editableFields === "false") {
+					field = div.children[0].textContent;
+					if (sectionState[index].hasOwnProperty("icon")) {
+						icon = sectionState[index].icon;
+					}
+				}
 			}
+
 			if (fromToFields === "false") {
 				if (field !== "" || info !== "") {
 					stateUpdate[stateName].push({
 						id: uniqid(),
 						field: field,
-						info: info
+						info: info,
+						icon: icon
 					});
 				}
 			} else if (fromToFields === "true") {
@@ -63,8 +80,7 @@ class Section extends Component {
 	};
 
 	fileUploaded = file => {
-		console.log("fileUploaded", file);
-		this.setState({personalImage: URL.createObjectURL(file)});
+		this.setState({ personalImage: URL.createObjectURL(file) });
 	};
 
 	onPhotoClick = e => {
@@ -77,7 +93,6 @@ class Section extends Component {
 			heading,
 			singular,
 			editableFields,
-			icons,
 			addItemMethod,
 			fromToFields,
 			sectionState
@@ -192,22 +207,53 @@ class Section extends Component {
 			sectionRender = (
 				<div>
 					{sectionState.map(item => {
-						let divOrIcon;
-						if (icons === "null" || !icons.hasOwnProperty(item.field)) {
-							divOrIcon = <div>{item.field}</div>;
-						} else if (icons !== "null" && icons.hasOwnProperty(item.field)) {
-							divOrIcon = (
+						let divOrIconOrImg;
+						if (item.field === "image") {
+							divOrIconOrImg = <img src={item.info} alt="Foto" />;
+						} else if (
+							!item.hasOwnProperty("icon") ||
+							(item.hasOwnProperty("icon") && item.icon === "")
+						) {
+							if (
+								item.field !== "Nombre completo" &&
+								item.field !== "Ocupación"
+							) {
+								divOrIconOrImg = (
+									<div>
+										<div>{item.field}</div>
+										<div className="info">{item.info}</div>
+									</div>
+								);
+							} else {
+								divOrIconOrImg = (
+									<div>
+										<div className="nameOrTitle">{item.info}</div>
+									</div>
+								);
+							}
+						} else if (item.hasOwnProperty("icon") && item.icon !== "") {
+							divOrIconOrImg = (
 								<div className="field">
-									<FontAwesomeIcon icon={icons[item.field]} />
+									<FontAwesomeIcon icon={item.icon} />
+									<div className="info">{item.info}</div>
 								</div>
 							);
 						}
+
+						let fromTo = null;
+						if (item.hasOwnProperty("from") || item.hasOwnProperty("to")) {
+							fromTo = (
+								<div className="fromTo">
+									<div>{item.from}</div>
+									<div>{item.to}</div>
+								</div>
+							);
+						}
+
 						return (
 							<div key={item.id} className="item">
-								{divOrIcon}
-								<div className="info">{item.info}</div>
-								<div>{item.from}</div>
-								<div>{item.to}</div>
+								{divOrIconOrImg}
+								{fromTo}
 							</div>
 						);
 					})}
