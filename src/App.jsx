@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./App.css";
 import uniqid from "uniqid";
 import Section from "./components/Section";
@@ -12,7 +12,6 @@ import {
 	faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-// import astronaut from "./user-astronaut-solid.svg";
 
 class App extends Component {
 	constructor() {
@@ -25,7 +24,12 @@ class App extends Component {
 				{ id: uniqid(), field: "Email", info: "", icon: faEnvelope },
 				{ id: uniqid(), field: "Teléfono", info: "", icon: faPhone },
 				{ id: uniqid(), field: "Dirección", info: "", icon: faLocationDot },
-				{ id: uniqid(), field: "Fecha de Nacimiento", info: "", icon: faCakeCandles },
+				{
+					id: uniqid(),
+					field: "Fecha de Nacimiento",
+					info: "",
+					icon: faCakeCandles
+				},
 				{ id: uniqid(), field: "Nacionalidad", info: "", icon: faGlobe }
 			],
 			habilidades: [
@@ -65,7 +69,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="app">
+			<Fragment>
 				<header>
 					<h1>
 						<FontAwesomeIcon icon={faBriefcase} /> CV App
@@ -105,7 +109,7 @@ class App extends Component {
 					<Section
 						stateName="experiencia"
 						heading="Experiencia Laboral"
-						singular="Experiencia Laboral"
+						singular="Empresa"
 						editableFields="true"
 						updateMethod={this.updateInfo}
 						addItemMethod={this.addItem}
@@ -119,7 +123,7 @@ class App extends Component {
 					</a>
 					&nbsp;2023
 				</footer>
-			</div>
+			</Fragment>
 		);
 	}
 }

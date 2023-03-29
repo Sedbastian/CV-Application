@@ -2,10 +2,6 @@ html {
 	background-color: #999;
 }
 
-.app {
-	text-align: center;
-}
-
 header {
 	position: fixed;
 	top: 0;
@@ -17,6 +13,11 @@ header {
 	border-bottom-color: #555;
 	border-bottom-style: solid;
 	border-bottom-width: 0.3rem;
+}
+
+header h1 {
+	margin-left: 2rem;
+	font-weight: 900;
 }
 
 main {

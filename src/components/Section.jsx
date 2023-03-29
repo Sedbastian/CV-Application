@@ -100,10 +100,15 @@ class Section extends Component {
 
 		let singularOtherInfo = null;
 		if (singular !== "null") {
+			let interval = null;
+			if (fromToFields === "true") {
+				interval = <div>Período</div>;
+			}
 			singularOtherInfo = (
-				<div>
+				<div className="singInfoInter">
 					<div>{singular}</div>
 					<div>Información Adicional</div>
+					{interval}
 				</div>
 			);
 		}
@@ -126,82 +131,80 @@ class Section extends Component {
 			}
 			const formClass = `editableFields-${editableFields}`;
 			sectionRender = (
-				<div>
-					<form
-						onSubmit={this.onSubmitSection}
-						autoComplete="on"
-						className={formClass}
-					>
-						{sectionState.map((item, index) => {
-							let inputInfo = <input type="text" defaultValue={item.info} />;
-							let inputOrDiv;
-							let notEditableClass = null;
-							if (item.field === "image") {
-								notEditableClass = `notEditable${index}`;
-								inputOrDiv = (
-									<input
-										type="file"
-										id="fileInput"
-										accept="image/*"
-										style={{ display: "none" }}
-										onChange={e => this.fileUploaded(e.target.files[0])}
-									/>
-								);
-								inputInfo = (
-									<img
-										src={this.state.personalImage}
-										alt="Foto"
-										onClick={this.onPhotoClick}
-										onDragEnter={e => {
-											e.stopPropagation();
-											e.preventDefault();
-										}}
-										onDragOver={e => {
-											e.stopPropagation();
-											e.preventDefault();
-										}}
-										onDrop={e => {
-											e.stopPropagation();
-											e.preventDefault();
-											const fileObj = e.dataTransfer.files[0];
-											this.fileUploaded(fileObj);
-										}}
-									/>
-								);
-							} else if (editableFields === "true") {
-								inputOrDiv = <input type="text" defaultValue={item.field} />;
-							} else if (editableFields === "false") {
-								notEditableClass = `notEditable${index}`;
-								inputOrDiv = <div>{item.field}</div>;
-							}
-							let fromToInputs = null;
-							if (fromToFields === "true") {
-								fromToInputs = (
-									<div className="fromTo">
-										<label htmlFor="from">Desde</label>
-										<input type="text" id="from" defaultValue={item.from} />
-										<label htmlFor="to">Hasta</label>
-										<input type="text" id="to" defaultValue={item.to} />
-									</div>
-								);
-							}
-							return (
-								<div key={item.id} className={notEditableClass}>
-									{inputOrDiv}
-									{inputInfo}
-									{fromToInputs}
+				<form
+					onSubmit={this.onSubmitSection}
+					autoComplete="on"
+					className={formClass}
+				>
+					{sectionState.map((item, index) => {
+						let inputInfo = <input type="text" defaultValue={item.info} />;
+						let inputOrDiv;
+						let notEditableClass = null;
+						if (item.field === "image") {
+							notEditableClass = `notEditable${index}`;
+							inputOrDiv = (
+								<input
+									type="file"
+									id="fileInput"
+									accept="image/*"
+									style={{ display: "none" }}
+									onChange={e => this.fileUploaded(e.target.files[0])}
+								/>
+							);
+							inputInfo = (
+								<img
+									src={this.state.personalImage}
+									alt="Foto"
+									onClick={this.onPhotoClick}
+									onDragEnter={e => {
+										e.stopPropagation();
+										e.preventDefault();
+									}}
+									onDragOver={e => {
+										e.stopPropagation();
+										e.preventDefault();
+									}}
+									onDrop={e => {
+										e.stopPropagation();
+										e.preventDefault();
+										const fileObj = e.dataTransfer.files[0];
+										this.fileUploaded(fileObj);
+									}}
+								/>
+							);
+						} else if (editableFields === "true") {
+							inputOrDiv = <input type="text" defaultValue={item.field} />;
+						} else if (editableFields === "false") {
+							notEditableClass = `notEditable${index}`;
+							inputOrDiv = <div>{item.field}</div>;
+						}
+						let fromToInputs = null;
+						if (fromToFields === "true") {
+							fromToInputs = (
+								<div className="fromTo">
+									<label htmlFor="from">Desde</label>
+									<input type="text" id="from" defaultValue={item.from} />
+									<label htmlFor="to">Hasta</label>
+									<input type="text" id="to" defaultValue={item.to} />
 								</div>
 							);
-						})}
+						}
+						return (
+							<div key={item.id} className={notEditableClass}>
+								{inputOrDiv}
+								{inputInfo}
+								{fromToInputs}
+							</div>
+						);
+					})}
 
-						{addItemButton}
-						<button type="submit">
-							<FontAwesomeIcon icon={faCheck} className="icon" />
-							<div className="pipe">&nbsp;</div>
-							<div>Guardar</div>
-						</button>
-					</form>
-				</div>
+					{addItemButton}
+					<button type="submit">
+						<FontAwesomeIcon icon={faCheck} className="icon" />
+						<div className="pipe">&nbsp;</div>
+						<div>Guardar</div>
+					</button>
+				</form>
 			);
 		} else if (this.state.action === "Edit") {
 			sectionRender = (
@@ -265,13 +268,13 @@ class Section extends Component {
 			);
 		}
 
+		const sectionClass = `${stateName} fromTos-${fromToFields}`;
+
 		return (
-			<section className={stateName}>
-				<div className="sectionDiv">
-					<h2>{heading}</h2>
-					{singularOtherInfo}
-					{sectionRender}
-				</div>
+			<section className={sectionClass}>
+				<h2>{heading}</h2>
+				{singularOtherInfo}
+				{sectionRender}
 			</section>
 		);
 	}
