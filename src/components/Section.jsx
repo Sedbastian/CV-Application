@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./styles/Section.css";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCheck,
 	faPlus,
-	faPenToSquare
+	faPenToSquare,
+	faVolleyball
 } from "@fortawesome/free-solid-svg-icons";
 import astronaut from "./user-astronaut-solid.svg";
 
@@ -32,7 +33,7 @@ class Section extends Component {
 		e.target.querySelectorAll("form>div").forEach((div, index) => {
 			let field;
 			let info;
-			let icon = "";
+			let icon;
 			if (stateName === "personal" && index === 2) {
 				field = "image";
 				info = div.children[1].src;
@@ -48,26 +49,30 @@ class Section extends Component {
 				}
 			}
 
+			let objToPush = {
+				id: uniqid(),
+				field: field,
+				info: info
+			};
+
+			if (icon) {
+				objToPush = { ...objToPush, icon: icon };
+			}
+
+			const textareaOfSubInfo = e.target.querySelector("textarea.subInfo");
+			if (textareaOfSubInfo) {
+				objToPush = { ...objToPush, subInfo: textareaOfSubInfo.value };
+			}
+
 			if (fromToFields === "false") {
 				if (field !== "" || info !== "") {
-					stateUpdate[stateName].push({
-						id: uniqid(),
-						field: field,
-						info: info,
-						icon: icon
-					});
+					stateUpdate[stateName].push(objToPush);
 				}
 			} else if (fromToFields === "true") {
 				const from = div.querySelector("#from").value;
 				const to = div.querySelector("#to").value;
 				if (field !== "" || info !== "" || from !== "" || to !== "") {
-					stateUpdate[stateName].push({
-						id: uniqid(),
-						field: field,
-						info: info,
-						from: from,
-						to: to
-					});
+					stateUpdate[stateName].push({ ...objToPush, from: from, to: to });
 				}
 			}
 		});
@@ -94,12 +99,28 @@ class Section extends Component {
 			singular,
 			editableFields,
 			addItemMethod,
+			subInfo,
 			fromToFields,
 			sectionState
 		} = this.props;
 
-		let singularOtherInfo = null;
-		if (singular !== "null") {
+		let singularOtherInfo;
+
+		let subInfoClass = "subInfo-false";
+		if (subInfo === "true") {
+			subInfoClass = "subInfo-true";
+		}
+
+		if (singular !== "null" && this.state.action === "Save") {
+			let otherInfo = <div>Información Adicional</div>;
+			if (stateName === "experiencia") {
+				otherInfo = (
+					<Fragment>
+						<div>Empresa</div>
+						<div>Información Adicional</div>
+					</Fragment>
+				);
+			}
 			let interval = null;
 			if (fromToFields === "true") {
 				interval = <div>Período</div>;
@@ -107,10 +128,12 @@ class Section extends Component {
 			singularOtherInfo = (
 				<div className="singInfoInter">
 					<div>{singular}</div>
-					<div>Información Adicional</div>
+					{otherInfo}
 					{interval}
 				</div>
 			);
+		} else if (singular === "null" || this.state.action === "Edit") {
+			singularOtherInfo = null;
 		}
 
 		let sectionRender;
@@ -121,7 +144,7 @@ class Section extends Component {
 					<button
 						type="button"
 						onClick={() => {
-							addItemMethod(stateName);
+							addItemMethod(stateName, subInfo === "true");
 						}}
 					>
 						<FontAwesomeIcon icon={faPlus} className="icon" />
@@ -137,7 +160,28 @@ class Section extends Component {
 					className={formClass}
 				>
 					{sectionState.map((item, index) => {
-						let inputInfo = <input type="text" defaultValue={item.info} />;
+						let subInfoTextarea = null;
+						if (subInfo === "true") {
+							subInfoTextarea = (
+								<textarea
+									defaultValue={item.subInfo}
+									className="subInfo"
+									rows="5"
+								></textarea>
+							);
+						}
+						let inputInfo = null;
+						if (stateName === "personal") {
+							inputInfo = <input type="text" defaultValue={item.info} />;
+						} else {
+							inputInfo = (
+								<Fragment>
+									<textarea defaultValue={item.info}></textarea>
+									{subInfoTextarea}
+								</Fragment>
+							);
+						}
+
 						let inputOrDiv;
 						let notEditableClass = null;
 						if (item.field === "image") {
@@ -221,10 +265,19 @@ class Section extends Component {
 								item.field !== "Nombre completo" &&
 								item.field !== "Ocupación"
 							) {
+								let subInfo = null;
+								if (item.hasOwnProperty("subInfo")) {
+									if (item.subInfo !== "") {
+										subInfo = <div className="subInfo">{item.subInfo}</div>;
+									}
+								}
 								divOrIconOrImg = (
 									<div>
-										<div>{item.field}</div>
+										<div>
+											<FontAwesomeIcon icon={faVolleyball} /> {item.field}
+										</div>
 										<div className="info">{item.info}</div>
+										{subInfo}
 									</div>
 								);
 							} else {
@@ -268,7 +321,7 @@ class Section extends Component {
 			);
 		}
 
-		const sectionClass = `${stateName} fromTos-${fromToFields}`;
+		const sectionClass = `${stateName} ${this.state.action} ${subInfoClass} fromTos-${fromToFields}`;
 
 		return (
 			<section className={sectionClass}>

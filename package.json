@@ -20,7 +20,9 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -41,6 +43,7 @@
 		]
 	},
 	"devDependencies": {
+		"gh-pages": "^5.0.0",
 		"prettier": "2.8.6"
 	},
 	"prettier": {
@@ -48,5 +51,6 @@
 		"useTabs": true,
 		"trailingComma": "none",
 		"arrowParens": "avoid"
-	}
+	},
+	"homepage": "https://sedbastian.github.io/cv-application/"
 }
