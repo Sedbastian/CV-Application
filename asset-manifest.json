@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cv-application/static/css/main.b1d08ef2.css",
-    "main.js": "/cv-application/static/js/main.992d608e.js",
+    "main.css": "/cv-application/static/css/main.8b0bbdc1.css",
+    "main.js": "/cv-application/static/js/main.21296ac9.js",
     "static/media/Raleway-Medium.ttf": "/cv-application/static/media/Raleway-Medium.1af9f1e9f3fd4766df83.ttf",
-    "static/media/user-astronaut-solid.svg": "/cv-application/static/media/user-astronaut-solid.b6daf5cbe27ba5c40a3cb35f2da3026c.svg",
+    "static/media/user-astronaut-solid.svg": "/cv-application/static/media/user-astronaut-solid.eb619ecfe80fbdcc1e4bef0aaea286bd.svg",
     "index.html": "/cv-application/index.html",
-    "main.b1d08ef2.css.map": "/cv-application/static/css/main.b1d08ef2.css.map",
-    "main.992d608e.js.map": "/cv-application/static/js/main.992d608e.js.map"
+    "main.8b0bbdc1.css.map": "/cv-application/static/css/main.8b0bbdc1.css.map",
+    "main.21296ac9.js.map": "/cv-application/static/js/main.21296ac9.js.map"
   },
   "entrypoints": [
-    "static/css/main.b1d08ef2.css",
-    "static/js/main.992d608e.js"
+    "static/css/main.8b0bbdc1.css",
+    "static/js/main.21296ac9.js"
   ]
 }
