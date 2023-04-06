@@ -7,7 +7,7 @@ section {
 	margin: 1rem;
 	padding: 2rem;
 	text-align: center;
-	background-color: #555;
+	background-color: #333;
 	border-radius: 0.5rem;
 	color: #ccc;
 	font-weight: bold;
@@ -106,7 +106,7 @@ img {
 	width: 10rem;
 	border-radius: 0.5rem;
 	background-color: rgb(47, 47, 47);
-	box-shadow: 0 0 0.5rem whitesmoke;
+	box-shadow: 0 0 0.3rem whitesmoke;
 }
 
 img:hover {
@@ -292,6 +292,7 @@ section.Save.fromTos-true form.editableFields-true .fromTo input {
 section.personal.Edit > div {
 	display: grid;
 	grid-template-columns: max-content max-content;
+	align-items: center;
 }
 
 section.personal.Edit > div > div:nth-child(1) {

@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import "./styles/Section.css";
 import uniqid from "uniqid";
+import SectionPreview from "./SectionPreview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCheck,
 	faPlus,
 	faPenToSquare,
-	faVolleyball
 } from "@fortawesome/free-solid-svg-icons";
 import astronaut from "./user-astronaut-solid.svg";
 
@@ -59,7 +59,7 @@ class Section extends Component {
 				objToPush = { ...objToPush, icon: icon };
 			}
 
-			const textareaOfSubInfo = e.target.querySelector("textarea.subInfo");
+			const textareaOfSubInfo = div.querySelector("textarea.subInfo");
 			if (textareaOfSubInfo) {
 				objToPush = { ...objToPush, subInfo: textareaOfSubInfo.value };
 			}
@@ -105,11 +105,6 @@ class Section extends Component {
 		} = this.props;
 
 		let singularOtherInfo;
-
-		let subInfoClass = "subInfo-false";
-		if (subInfo === "true") {
-			subInfoClass = "subInfo-true";
-		}
 
 		if (singular !== "null" && this.state.action === "Save") {
 			let otherInfo = <div>Información Adicional</div>;
@@ -252,75 +247,20 @@ class Section extends Component {
 			);
 		} else if (this.state.action === "Edit") {
 			sectionRender = (
-				<div>
-					{sectionState.map(item => {
-						let divOrIconOrImg;
-						if (item.field === "image") {
-							divOrIconOrImg = <img src={item.info} alt="Foto" />;
-						} else if (
-							!item.hasOwnProperty("icon") ||
-							(item.hasOwnProperty("icon") && item.icon === "")
-						) {
-							if (
-								item.field !== "Nombre completo" &&
-								item.field !== "Ocupación"
-							) {
-								let subInfo = null;
-								if (item.hasOwnProperty("subInfo")) {
-									if (item.subInfo !== "") {
-										subInfo = <div className="subInfo">{item.subInfo}</div>;
-									}
-								}
-								divOrIconOrImg = (
-									<div>
-										<div>
-											<FontAwesomeIcon icon={faVolleyball} /> {item.field}
-										</div>
-										<div className="info">{item.info}</div>
-										{subInfo}
-									</div>
-								);
-							} else {
-								divOrIconOrImg = (
-									<div>
-										<div className="nameOrTitle">{item.info}</div>
-									</div>
-								);
-							}
-						} else if (item.hasOwnProperty("icon") && item.icon !== "") {
-							divOrIconOrImg = (
-								<div className="field">
-									<FontAwesomeIcon icon={item.icon} />
-									<div className="info">{item.info}</div>
-								</div>
-							);
-						}
-
-						let fromTo = null;
-						if (item.hasOwnProperty("from") || item.hasOwnProperty("to")) {
-							fromTo = (
-								<div className="fromTo">
-									<div>{item.from}</div>
-									<div>{item.to}</div>
-								</div>
-							);
-						}
-
-						return (
-							<div key={item.id} className="item">
-								{divOrIconOrImg}
-								{fromTo}
-							</div>
-						);
-					})}
+				<Fragment>
+					<SectionPreview stateName={stateName} sectionState={sectionState} />
 					<button onClick={this.edit}>
 						<FontAwesomeIcon icon={faPenToSquare} className="icon" />
 						<div>Editar</div>
 					</button>
-				</div>
+				</Fragment>
 			);
 		}
 
+		let subInfoClass = "subInfo-false";
+		if (subInfo === "true") {
+			subInfoClass = "subInfo-true";
+		}
 		const sectionClass = `${stateName} ${this.state.action} ${subInfoClass} fromTos-${fromToFields}`;
 
 		return (

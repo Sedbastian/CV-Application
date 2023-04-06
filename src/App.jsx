@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import "./App.css";
 import uniqid from "uniqid";
 import Section from "./components/Section";
+import Preview from "./components/Preview";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBriefcase,
@@ -12,6 +13,7 @@ import {
 	faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import astronaut from "./components/user-astronaut-solid.svg";
 
 class App extends Component {
 	constructor() {
@@ -28,7 +30,7 @@ class App extends Component {
 					field: "Ocupación",
 					info: "Desarrollador Web Full Stack"
 				},
-				{ id: uniqid(), field: "image", info: "" },
+				{ id: uniqid(), field: "image", info: astronaut },
 				{
 					id: uniqid(),
 					field: "Email",
@@ -87,16 +89,49 @@ class App extends Component {
 					info: "GIMP, InkScape"
 				}
 			],
+			educacion: [
+				{
+					id: uniqid(),
+					field: "Ingeniería en Electrónica y en Telecomunicaciones",
+					info: "Universidad Católica Argentina",
+					subInfo:
+						"Cursada finalizada y aprobada\n35 materias aprobadas\nPromedio general: 7.34 / 6 finales pendientes",
+					from: "2003",
+					to: "2009"
+				},
+				{
+					id: uniqid(),
+					field: "Desarrollador Web Full Stack",
+					info: "The Odin Project",
+					subInfo: "",
+					from: "2022",
+					to: "2023"
+				}
+			],
 			idiomas: [
 				{
 					id: uniqid(),
 					field: "Inglés Avanzado",
-					info: "2001: Super Intensive Course. PLI English School in Toronto, Canada.\n2000: First Certificate, University of Cambridge."
+					info: "PLI English School in Toronto, Canada",
+					subInfo: "Super Intensive Course",
+					from: "2000",
+					to: "2001"
+				},
+				{
+					id: uniqid(),
+					field: "Inglés Avanzado",
+					info: "University of Cambridge",
+					subInfo: "First Certificate",
+					from: "1999",
+					to: "2000"
 				},
 				{
 					id: uniqid(),
 					field: "Inglés Intermedio",
-					info: "1990 a 1999: Estudios de Inglés.\nEgresado Instituto Argentino de Profesores de Inglés (IADEI)."
+					info: "Egresado Instituto Argentino de Profesores de Inglés (IADEI).",
+					subInfo: "Estudios de Inglés",
+					from: "1990",
+					to: "1999"
 				}
 			],
 			experiencia: [
@@ -108,6 +143,23 @@ class App extends Component {
 						"Empresa con más de 30 años de experiencia en la fabricación y diseño de circuitos impresos.\nInvestigación y desarrollo en productos innovadores diseñados para cada proyecto.",
 					from: "2002",
 					to: "2009"
+				}
+			],
+			intereses: [
+				{
+					id: uniqid(),
+					field: "Ajedrez",
+					info: "Competencias online en LiChess.org"
+				},
+				{
+					id: uniqid(),
+					field: "Música",
+					info: "Guitarra"
+				},
+				{
+					id: uniqid(),
+					field: "Carpintería",
+					info: "Muebles rústicos"
 				}
 			]
 		};
@@ -134,6 +186,23 @@ class App extends Component {
 		this.setState(addObj);
 	};
 
+	print = e => {
+		const styles = document.querySelectorAll("style");
+		// console.log(styles[styles.length - 1].innerHTML);
+		let allStyles = "";
+		styles.forEach(style => {
+			allStyles += `<style>${style.innerHTML}</style>`;
+		});
+		const preview = document.getElementById("preview").innerHTML;
+		const newWindow = window.open("", "", "height=500, width=500");
+		newWindow.document.write(`<html><head> ${allStyles} </head>`);
+		newWindow.document.write('<body><div id="preview">');
+		newWindow.document.write(preview);
+		newWindow.document.write("</div></body></html>");
+		// newWindow.document.close();
+		// newWindow.print();
+	};
+
 	render() {
 		return (
 			<Fragment>
@@ -141,6 +210,9 @@ class App extends Component {
 					<h1>
 						<FontAwesomeIcon icon={faBriefcase} /> CV App
 					</h1>
+					<button onClick={this.print} id="printButton">
+						Abrir vista previa para Imprimir / Exportar PDF
+					</button>
 				</header>
 				<main>
 					<Section
@@ -149,6 +221,7 @@ class App extends Component {
 						singular="null"
 						editableFields="false"
 						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
 						addItemMethod="null"
 						subInfo="false"
 						fromToFields="false"
@@ -160,10 +233,23 @@ class App extends Component {
 						singular="Habilidad"
 						editableFields="true"
 						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
 						addItemMethod={this.addItem}
 						subInfo="false"
 						fromToFields="false"
 						sectionState={this.state.habilidades}
+					/>
+					<Section
+						stateName="educacion"
+						heading="Educación"
+						singular="Carrera"
+						editableFields="true"
+						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
+						addItemMethod={this.addItem}
+						subInfo="true"
+						fromToFields="true"
+						sectionState={this.state.educacion}
 					/>
 					<Section
 						stateName="idiomas"
@@ -171,9 +257,10 @@ class App extends Component {
 						singular="Idioma"
 						editableFields="true"
 						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
 						addItemMethod={this.addItem}
-						subInfo="false"
-						fromToFields="false"
+						subInfo="true"
+						fromToFields="true"
 						sectionState={this.state.idiomas}
 					/>
 					<Section
@@ -182,12 +269,26 @@ class App extends Component {
 						singular="Cargo"
 						editableFields="true"
 						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
 						addItemMethod={this.addItem}
 						subInfo="true"
 						fromToFields="true"
 						sectionState={this.state.experiencia}
 					/>
+					<Section
+						stateName="intereses"
+						heading="Intereses"
+						singular="null"
+						editableFields="true"
+						updateMethod={this.updateInfo}
+						updatePreviewMethod={this.updatePreview}
+						addItemMethod={this.addItem}
+						subInfo="false"
+						fromToFields="false"
+						sectionState={this.state.intereses}
+					/>
 				</main>
+				<Preview data={this.state} />
 				<footer className="footerTag">
 					<a href="https://github.com/Sedbastian">
 						Sedbastian <FontAwesomeIcon icon={faGithub} />
