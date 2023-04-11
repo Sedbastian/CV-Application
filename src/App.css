@@ -35,10 +35,14 @@ div#root {
 	font-weight: 900;
 }
 
-#root > header > #printButton {
+#root > header > button {
 	margin: 0.5rem;
 	margin-right: 1rem;
 	align-self: center;
+}
+
+#root > header > button:hover {
+	cursor: pointer;
 }
 
 #root > main {

@@ -1,17 +1,8 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
-import astronaut from "./user-astronaut-solid.svg";
 
 class SectionPreview extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			action: "Save",
-			personalImage: astronaut
-		};
-	}
-
 	render() {
 		const { stateName, sectionState } = this.props;
 		return (

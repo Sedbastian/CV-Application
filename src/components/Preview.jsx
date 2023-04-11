@@ -13,12 +13,37 @@ import {
 
 class Preview extends Component {
 	onWheel = e => {
-		const asidePreview = document.querySelector("aside#preview");
-		let topValue = parseInt(asidePreview.style.top, 10);
+		// const asidePreview = document.querySelector("aside#preview");
+		let topValue = parseInt(e.currentTarget.style.top, 10);
 		if (Number.isNaN(topValue)) {
 			topValue = 0;
 		}
-		asidePreview.style.top = `${topValue - e.deltaY / 2}px`;
+		topValue -= e.deltaY;
+		if (topValue < 350 && topValue > -350) {
+			e.currentTarget.style.top = `${topValue}px`;
+		}
+	};
+
+	onClick = e => {
+		const header = document.querySelector("header");
+		const main = document.querySelector("main");
+
+		if (e.currentTarget.style.zIndex === "") {
+			header.style.opacity = "0.5";
+			main.style.opacity = "0.5";
+			e.currentTarget.style.zIndex = "3";
+			e.currentTarget.style.transform = "scale(1)";
+			e.currentTarget.style.left = `-${main.offsetWidth / 2}px`;
+			e.currentTarget.style.top = "300px";
+		} else {
+			const asidePreview = document.querySelector("aside#preview");
+			header.style.opacity = "";
+			main.style.opacity = "";
+			asidePreview.style.zIndex = "";
+			asidePreview.style.transform = "";
+			asidePreview.style.left = "";
+			asidePreview.style.top = "";
+		}
 	};
 
 	render() {
@@ -31,8 +56,8 @@ class Preview extends Component {
 			intereses
 		} = this.props.data;
 		return (
-			<div className="previewContainer" onWheel={this.onWheel} onClick={this.onClick}>
-				<aside id="preview">
+			<div className="previewContainer">
+				<aside id="preview" onWheel={this.onWheel} onClick={this.onClick}>
 					<section className="personal">
 						<SectionPreview stateName="personal" sectionState={personal} />
 					</section>

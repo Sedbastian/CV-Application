@@ -29,6 +29,7 @@ aside#preview {
 	margin-top: -75mm;
 	margin-left: -53mm;
 	transform: scale(0.45);
+	cursor: pointer;
 }
 
 #preview {
@@ -80,6 +81,10 @@ aside#preview {
 	width: auto;
 	height: 45mm;
 }
+#preview > section.personal > div#personal > div:nth-child(3) img:hover {
+	opacity: 1;
+	cursor: default;
+}
 
 #preview > section.personal > div#personal > div:nth-child(4) {
 	grid-column: 1 / 2;
@@ -125,7 +130,7 @@ aside#preview {
 }
 
 #preview > section:not(.personal) {
-	margin-top: 6mm;
+	margin-top: 4mm;
 	margin-left: 10mm;
 	margin-right: 10mm;
 }
@@ -139,7 +144,7 @@ aside#preview {
 }
 
 #preview > section.habilidades > div#habilidades > div,
-#preview > section.intereses > div#habilidades > div {
+#preview > section.intereses > div#intereses > div {
 	padding-right: 2mm;
 	border-right: 0.15mm solid black;
 	margin-bottom: 0;
@@ -202,22 +207,32 @@ aside#preview {
 #preview > section.idiomas .item > div,
 #preview > section.experiencia .item > div {
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: min-content auto;
 	grid-template-rows: 1fr;
 	margin-bottom: 2mm;
 	column-gap: 2mm;
 }
 
+#preview > section.educacion .item > div:nth-child(1) > div:nth-child(1),
+#preview > section.idiomas .item > div:nth-child(1) > div:nth-child(1),
+#preview > section.experiencia .item > div:nth-child(1) > div:nth-child(1) {
+	white-space: nowrap;
+}
+
 #preview > section.educacion .item > div .info,
 #preview > section.idiomas .item > div .info,
 #preview > section.experiencia .item > div .info {
+	grid-column: 2 / 3;
 	font-style: italic;
 	font-weight: 600;
 }
+
+
 
 #preview > section.educacion .item > div .subInfo,
 #preview > section.idiomas .item > div .subInfo,
 #preview > section.experiencia .item > div .subInfo {
 	grid-column: 1 / 3;
 	font-weight: 400;
+	white-space: pre-wrap;
 }

@@ -8,14 +8,12 @@ import {
 	faPlus,
 	faPenToSquare
 } from "@fortawesome/free-solid-svg-icons";
-import astronaut from "./user-astronaut-solid.svg";
 
 class Section extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			action: "Save",
-			personalImage: astronaut
+			action: "Save"
 		};
 	}
 
@@ -85,7 +83,7 @@ class Section extends Component {
 	};
 
 	fileUploaded = file => {
-		this.setState({ personalImage: URL.createObjectURL(file) });
+		this.props.updatePhotoMethod(URL.createObjectURL(file));
 	};
 
 	onPhotoClick = e => {
@@ -184,7 +182,7 @@ class Section extends Component {
 							);
 							inputInfo = (
 								<img
-									src={this.state.personalImage}
+									src={sectionState[2].info}
 									alt="Foto"
 									onClick={this.onPhotoClick}
 									onDragEnter={e => {

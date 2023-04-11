@@ -13,12 +13,191 @@ import {
 	faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import astronaut from "./components/user-astronaut-solid.svg";
+import astronaut from "./components/images/user-astronaut-solid.svg";
+import lupiJpg from "./components/images/Lupi.jpg";
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
+			personal: [
+				{
+					id: uniqid(),
+					field: "Nombre completo",
+					info: ""
+				},
+				{
+					id: uniqid(),
+					field: "Ocupación",
+					info: ""
+				},
+				{ id: uniqid(), field: "image", info: astronaut },
+				{
+					id: uniqid(),
+					field: "Email",
+					info: "",
+					icon: faEnvelope
+				},
+				{
+					id: uniqid(),
+					field: "Teléfono",
+					info: "",
+					icon: faPhone
+				},
+				{
+					id: uniqid(),
+					field: "Dirección",
+					info: "",
+					icon: faLocationDot
+				},
+				{
+					id: uniqid(),
+					field: "Fecha de Nacimiento",
+					info: "",
+					icon: faCakeCandles
+				},
+				{
+					id: uniqid(),
+					field: "Nacionalidad",
+					info: "",
+					icon: faGlobe
+				}
+			],
+			habilidades: [
+				{
+					id: uniqid(),
+					field: "",
+					info: ""
+				}
+			],
+			educacion: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			idiomas: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			experiencia: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			intereses: [
+				{
+					id: uniqid(),
+					field: "",
+					info: ""
+				}
+			]
+		};
+		this.blankCV = {
+			personal: [
+				{
+					id: uniqid(),
+					field: "Nombre completo",
+					info: ""
+				},
+				{
+					id: uniqid(),
+					field: "Ocupación",
+					info: ""
+				},
+				{ id: uniqid(), field: "image", info: astronaut },
+				{
+					id: uniqid(),
+					field: "Email",
+					info: "",
+					icon: faEnvelope
+				},
+				{
+					id: uniqid(),
+					field: "Teléfono",
+					info: "",
+					icon: faPhone
+				},
+				{
+					id: uniqid(),
+					field: "Dirección",
+					info: "",
+					icon: faLocationDot
+				},
+				{
+					id: uniqid(),
+					field: "Fecha de Nacimiento",
+					info: "",
+					icon: faCakeCandles
+				},
+				{
+					id: uniqid(),
+					field: "Nacionalidad",
+					info: "",
+					icon: faGlobe
+				}
+			],
+			habilidades: [
+				{
+					id: uniqid(),
+					field: "",
+					info: ""
+				}
+			],
+			educacion: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			idiomas: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			experiencia: [
+				{
+					id: uniqid(),
+					field: "",
+					info: "",
+					subInfo: "",
+					from: "",
+					to: ""
+				}
+			],
+			intereses: [
+				{
+					id: uniqid(),
+					field: "",
+					info: ""
+				}
+			]
+		};
+		this.exampleCV = {
 			personal: [
 				{
 					id: uniqid(),
@@ -30,7 +209,7 @@ class App extends Component {
 					field: "Ocupación",
 					info: "Desarrollador Web Full Stack"
 				},
-				{ id: uniqid(), field: "image", info: astronaut },
+				{ id: uniqid(), field: "image", info: lupiJpg },
 				{
 					id: uniqid(),
 					field: "Email",
@@ -143,6 +322,22 @@ class App extends Component {
 						"Empresa con más de 30 años de experiencia en la fabricación y diseño de circuitos impresos.\nInvestigación y desarrollo en productos innovadores diseñados para cada proyecto.",
 					from: "2002",
 					to: "2009"
+				},
+				{
+					id: uniqid(),
+					field: "Creador, administrador y dueño",
+					info: "Finca La Venancia",
+					subInfo: `Finca Agroecológica de tres hectáreas al pie de la Sierra de Velazco, a 1600msnm.
+Cuenta con, actualmente, más de 100 nogales y más de 150 olivos. La producción anual es de 1000kg de nueces y 3000kg de aceitunas destinadas a aceite y aceitunas negras en salmuera.
+Estos productos son cosechados, envasados y almacenados en las instalaciones de la finca para luego ser comercializados en distintos puntos del país.
+						
+Tareas desempeñadas:
+Creación, administración y dueño de la empresa.
+Cosecha y Riego a través de canales y acequias que bajan de la quebrada. Poda y cuidado de más de 350 árboles de manera anual. Logística con respecto a la recolección y almacenamiento de los frutos.
+Producción: procesamiento de los frutos a su estado final a través de procesos biológicos. Interacción con proveedores de productos químicos y envases para la presentación final.
+Comercialización: interacción con distintos puntos de venta, incluyendo la comercialización en otras provincias a través de encomiendas.`,
+					from: "2002",
+					to: "2009"
 				}
 			],
 			intereses: [
@@ -172,6 +367,12 @@ class App extends Component {
 		this.setState(changeObj);
 	};
 
+	updatePhoto = url => {
+		let personalCopy = [...this.state.personal];
+		personalCopy[2].info = url;
+		this.setState({ personal: personalCopy });
+	};
+
 	addItem = (stateName, hasSubInfo) => {
 		let addObj = {};
 		const item = {
@@ -184,6 +385,14 @@ class App extends Component {
 		}
 		addObj[stateName] = this.state[stateName].concat(item);
 		this.setState(addObj);
+	};
+
+	loadExample = () => {
+		this.setState(this.exampleCV);
+	};
+
+	loadBlank = () => {
+		this.setState(this.blankCV);
 	};
 
 	print = e => {
@@ -212,7 +421,13 @@ class App extends Component {
 					<h1>
 						<FontAwesomeIcon icon={faBriefcase} /> CV App
 					</h1>
-					<button onClick={this.print} id="printButton">
+					<button className="exampleButton" onClick={this.loadExample}>
+						Cargar CV de Ejemplo
+					</button>
+					<button className="blankButton" onClick={this.loadBlank}>
+						Borrar Todo
+					</button>
+					<button onClick={this.print} className="printButton">
 						Generar vista previa para Imprimir / Exportar PDF
 					</button>
 				</header>
@@ -223,6 +438,7 @@ class App extends Component {
 						singular="null"
 						editableFields="false"
 						updateMethod={this.updateInfo}
+						updatePhotoMethod={this.updatePhoto}
 						updatePreviewMethod={this.updatePreview}
 						addItemMethod="null"
 						subInfo="false"
