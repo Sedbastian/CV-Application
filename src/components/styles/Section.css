@@ -4,6 +4,9 @@
 }
 
 section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 1rem;
 	padding: 2rem;
 	text-align: center;
@@ -15,6 +18,7 @@ section {
 }
 
 section h2 {
+	align-self: stretch;
 	font-weight: 900;
 	margin-top: 0;
 	margin-bottom: 1rem;
@@ -192,6 +196,7 @@ section form.editableFields-false > button[type="submit"] {
 /* Other Sections {.Save form}*/
 
 section .singInfoInter {
+	align-self: stretch;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	display: grid;
@@ -220,10 +225,11 @@ section.Save form.editableFields-true > button[type="submit"] {
 
 /* Experience {.Save form} */
 section.Save.subInfo-true.fromTos-true .singInfoInter {
+	align-self: stretch;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	display: grid;
-	grid-template-columns: 0.5fr 0.5fr 3fr 1fr;
+	grid-template-columns: 1fr 3fr 1fr;
 	font-size: 1.2rem;
 }
 
@@ -380,20 +386,17 @@ section.Edit.subInfo-true.fromTos-true .item > div:nth-child(1) {
 }
 
 section.Edit.subInfo-true.fromTos-true .item > div .subInfo {
-	white-space: pre;
+	white-space: pre-wrap;
 	color: #aaa;
 }
 
 section.Edit.subInfo-true.fromTos-true .item .fromTo {
 	align-self: center;
 	display: flex;
+	gap: 0.5rem;
 }
 
 section.Edit.subInfo-true.fromTos-true .item .fromTo div {
 	display: flex;
 	align-items: center;
-}
-
-section.Edit.subInfo-true.fromTos-true .item .fromTo :nth-child(1)::after {
-	content: "~";
 }

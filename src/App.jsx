@@ -58,7 +58,7 @@ class App extends Component {
 				{
 					id: uniqid(),
 					field: "Nacionalidad",
-					info: "Argentino",
+					info: "Argentina",
 					icon: faGlobe
 				}
 			],
@@ -188,18 +188,20 @@ class App extends Component {
 
 	print = e => {
 		const styles = document.querySelectorAll("style");
-		// console.log(styles[styles.length - 1].innerHTML);
 		let allStyles = "";
 		styles.forEach(style => {
 			allStyles += `<style>${style.innerHTML}</style>`;
 		});
 		const preview = document.getElementById("preview").innerHTML;
-		const newWindow = window.open("", "", "height=500, width=500");
-		newWindow.document.write(`<html><head> ${allStyles} </head>`);
-		newWindow.document.write('<body><div id="preview">');
+		const newWindow = window.open("", "");
+		newWindow.document.write(
+			`<html style="overflow: auto"><head><title>CV App Preview</title>${allStyles}</head>`
+		);
+		newWindow.document.write(`<body><div id="preview">`);
 		newWindow.document.write(preview);
 		newWindow.document.write("</div></body></html>");
 		// newWindow.document.close();
+
 		// newWindow.print();
 	};
 
@@ -211,7 +213,7 @@ class App extends Component {
 						<FontAwesomeIcon icon={faBriefcase} /> CV App
 					</h1>
 					<button onClick={this.print} id="printButton">
-						Abrir vista previa para Imprimir / Exportar PDF
+						Generar vista previa para Imprimir / Exportar PDF
 					</button>
 				</header>
 				<main>
@@ -266,7 +268,7 @@ class App extends Component {
 					<Section
 						stateName="experiencia"
 						heading="Experiencia Laboral"
-						singular="Cargo"
+						singular="Cargo | Empresa"
 						editableFields="true"
 						updateMethod={this.updateInfo}
 						updatePreviewMethod={this.updatePreview}

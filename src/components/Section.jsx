@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCheck,
 	faPlus,
-	faPenToSquare,
+	faPenToSquare
 } from "@fortawesome/free-solid-svg-icons";
 import astronaut from "./user-astronaut-solid.svg";
 
@@ -108,14 +108,6 @@ class Section extends Component {
 
 		if (singular !== "null" && this.state.action === "Save") {
 			let otherInfo = <div>Información Adicional</div>;
-			if (stateName === "experiencia") {
-				otherInfo = (
-					<Fragment>
-						<div>Empresa</div>
-						<div>Información Adicional</div>
-					</Fragment>
-				);
-			}
 			let interval = null;
 			if (fromToFields === "true") {
 				interval = <div>Período</div>;

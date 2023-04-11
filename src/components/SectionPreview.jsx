@@ -64,6 +64,7 @@ class SectionPreview extends Component {
 						fromTo = (
 							<div className="fromTo">
 								<div>{item.from}</div>
+								<div>-</div>
 								<div>{item.to}</div>
 							</div>
 						);
