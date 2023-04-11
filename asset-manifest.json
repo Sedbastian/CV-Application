@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/cv-application/static/css/main.fb3b5133.css",
-    "main.js": "/cv-application/static/js/main.81e92f6f.js",
+    "main.css": "/cv-application/static/css/main.bd8708b5.css",
+    "main.js": "/cv-application/static/js/main.1e9c9bd4.js",
     "static/media/Raleway-Medium.ttf": "/cv-application/static/media/Raleway-Medium.1af9f1e9f3fd4766df83.ttf",
+    "static/media/CrimsonPro-Medium.ttf": "/cv-application/static/media/CrimsonPro-Medium.61cb0751dcf777b2acfe.ttf",
     "static/media/user-astronaut-solid.svg": "/cv-application/static/media/user-astronaut-solid.eb619ecfe80fbdcc1e4bef0aaea286bd.svg",
     "index.html": "/cv-application/index.html",
-    "main.fb3b5133.css.map": "/cv-application/static/css/main.fb3b5133.css.map",
-    "main.81e92f6f.js.map": "/cv-application/static/js/main.81e92f6f.js.map"
+    "main.bd8708b5.css.map": "/cv-application/static/css/main.bd8708b5.css.map",
+    "main.1e9c9bd4.js.map": "/cv-application/static/js/main.1e9c9bd4.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb3b5133.css",
-    "static/js/main.81e92f6f.js"
+    "static/css/main.bd8708b5.css",
+    "static/js/main.1e9c9bd4.js"
   ]
 }
