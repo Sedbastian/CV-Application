@@ -19,95 +19,7 @@ import lupiJpg from "./components/images/Lupi.jpg";
 class App extends Component {
 	constructor() {
 		super();
-		this.state = {
-			personal: [
-				{
-					id: uniqid(),
-					field: "Nombre completo",
-					info: ""
-				},
-				{
-					id: uniqid(),
-					field: "Ocupación",
-					info: ""
-				},
-				{ id: uniqid(), field: "image", info: astronaut },
-				{
-					id: uniqid(),
-					field: "Email",
-					info: "",
-					icon: faEnvelope
-				},
-				{
-					id: uniqid(),
-					field: "Teléfono",
-					info: "",
-					icon: faPhone
-				},
-				{
-					id: uniqid(),
-					field: "Dirección",
-					info: "",
-					icon: faLocationDot
-				},
-				{
-					id: uniqid(),
-					field: "Fecha de Nacimiento",
-					info: "",
-					icon: faCakeCandles
-				},
-				{
-					id: uniqid(),
-					field: "Nacionalidad",
-					info: "",
-					icon: faGlobe
-				}
-			],
-			habilidades: [
-				{
-					id: uniqid(),
-					field: "",
-					info: ""
-				}
-			],
-			educacion: [
-				{
-					id: uniqid(),
-					field: "",
-					info: "",
-					subInfo: "",
-					from: "",
-					to: ""
-				}
-			],
-			idiomas: [
-				{
-					id: uniqid(),
-					field: "",
-					info: "",
-					subInfo: "",
-					from: "",
-					to: ""
-				}
-			],
-			experiencia: [
-				{
-					id: uniqid(),
-					field: "",
-					info: "",
-					subInfo: "",
-					from: "",
-					to: ""
-				}
-			],
-			intereses: [
-				{
-					id: uniqid(),
-					field: "",
-					info: ""
-				}
-			]
-		};
+
 		this.blankCV = {
 			personal: [
 				{
@@ -336,8 +248,8 @@ Creación, administración y dueño de la empresa.
 Cosecha y Riego a través de canales y acequias que bajan de la quebrada. Poda y cuidado de más de 350 árboles de manera anual. Logística con respecto a la recolección y almacenamiento de los frutos.
 Producción: procesamiento de los frutos a su estado final a través de procesos biológicos. Interacción con proveedores de productos químicos y envases para la presentación final.
 Comercialización: interacción con distintos puntos de venta, incluyendo la comercialización en otras provincias a través de encomiendas.`,
-					from: "2002",
-					to: "2009"
+					from: "2011",
+					to: "Presente"
 				}
 			],
 			intereses: [
@@ -358,6 +270,17 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 				}
 			]
 		};
+
+		const savedCVjson = localStorage.getItem("CV");
+		if (savedCVjson) {
+			const savedCV = JSON.parse(savedCVjson);
+			for (const key of Object.keys(savedCV)) {
+				savedCV[key].forEach(element => (element.id = uniqid()));
+			}
+			this.state = savedCV;
+		} else {
+			this.state = this.blankCV;
+		}
 	}
 
 	updateInfo = obj => {
@@ -515,6 +438,11 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 				</footer>
 			</Fragment>
 		);
+	}
+
+	componentDidUpdate() {
+		localStorage.setItem("CV", JSON.stringify(this.state));
+		console.log(localStorage.getItem("CV"));
 	}
 }
 
