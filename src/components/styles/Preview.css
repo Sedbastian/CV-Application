@@ -14,7 +14,7 @@
 
 div#preview {
 	margin: auto;
-	border: 1px solid #333;
+	border: 1px solid #bbb;
 }
 
 div.previewContainer {
@@ -25,7 +25,8 @@ div.previewContainer {
 aside#preview {
 	position: relative;
 	z-index: 1;
-	border: 1px solid #333;
+	border: 1px solid white;
+	border-radius: 0.5rem;
 	margin-top: -75mm;
 	margin-left: -53mm;
 	transform: scale(0.45);

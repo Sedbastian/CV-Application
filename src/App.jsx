@@ -327,14 +327,15 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 		const preview = document.getElementById("preview").innerHTML;
 		const newWindow = window.open("", "");
 		newWindow.document.write(
-			`<html style="overflow: auto"><head><title>CV App Preview</title>${allStyles}</head>`
+			`<html style="overflow: auto"><head><title>CV - ${this.state.personal[0].info}</title>${allStyles}</head>`
 		);
 		newWindow.document.write(`<body><div id="preview">`);
 		newWindow.document.write(preview);
 		newWindow.document.write("</div></body></html>");
-		// newWindow.document.close();
-
-		// newWindow.print();
+		setTimeout(() => {
+			newWindow.document.close();
+			newWindow.print();
+		}, 300);
 	};
 
 	render() {
@@ -351,7 +352,7 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 						Borrar Todo
 					</button>
 					<button onClick={this.print} className="printButton">
-						Generar vista previa para Imprimir / Exportar PDF
+						Imprimir / Exportar PDF
 					</button>
 				</header>
 				<main>
@@ -419,7 +420,7 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 					<Section
 						stateName="intereses"
 						heading="Intereses"
-						singular="null"
+						singular="Interés"
 						editableFields="true"
 						updateMethod={this.updateInfo}
 						updatePreviewMethod={this.updatePreview}
@@ -442,7 +443,6 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
 
 	componentDidUpdate() {
 		localStorage.setItem("CV", JSON.stringify(this.state));
-		console.log(localStorage.getItem("CV"));
 	}
 }
 
