@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/cv-application/static/css/main.a0c29331.css",
-    "main.js": "/cv-application/static/js/main.a9ef0b92.js",
-    "static/media/Raleway-Medium.ttf": "/cv-application/static/media/Raleway-Medium.1af9f1e9f3fd4766df83.ttf",
-    "static/media/CrimsonPro-Medium.ttf": "/cv-application/static/media/CrimsonPro-Medium.61cb0751dcf777b2acfe.ttf",
-    "static/media/Lupi.jpg": "/cv-application/static/media/Lupi.5fe7a6624ff86d01e5b7.jpg",
-    "static/media/user-astronaut-solid.svg": "/cv-application/static/media/user-astronaut-solid.eb619ecfe80fbdcc1e4bef0aaea286bd.svg",
-    "index.html": "/cv-application/index.html",
-    "main.a0c29331.css.map": "/cv-application/static/css/main.a0c29331.css.map",
-    "main.a9ef0b92.js.map": "/cv-application/static/js/main.a9ef0b92.js.map"
+    "main.css": "/cv-app/static/css/main.f2424338.css",
+    "main.js": "/cv-app/static/js/main.d2a4cb1a.js",
+    "static/media/Raleway-Medium.ttf": "/cv-app/static/media/Raleway-Medium.1af9f1e9f3fd4766df83.ttf",
+    "static/media/CrimsonPro-Medium.ttf": "/cv-app/static/media/CrimsonPro-Medium.61cb0751dcf777b2acfe.ttf",
+    "static/media/Lupi.jpg": "/cv-app/static/media/Lupi.5fe7a6624ff86d01e5b7.jpg",
+    "static/media/user-astronaut-solid.svg": "/cv-app/static/media/user-astronaut-solid.eb619ecfe80fbdcc1e4bef0aaea286bd.svg",
+    "index.html": "/cv-app/index.html",
+    "main.f2424338.css.map": "/cv-app/static/css/main.f2424338.css.map",
+    "main.d2a4cb1a.js.map": "/cv-app/static/js/main.d2a4cb1a.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0c29331.css",
-    "static/js/main.a9ef0b92.js"
+    "static/css/main.f2424338.css",
+    "static/js/main.d2a4cb1a.js"
   ]
 }
