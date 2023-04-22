@@ -12,13 +12,13 @@ import {
 export default function Section({
   stateName,
   heading,
-  singular,
-  editableFields,
+  singular = null,
+  editableFields = true,
   updateMethod,
   updatePhotoMethod,
-  addItemMethod,
-  subInfo,
-  fromToFields,
+  addItemMethod = null,
+  subInfo = false,
+  fromToFields = false,
   sectionState
 }) {
   const [action, setAction] = useState("Save");
@@ -31,7 +31,7 @@ export default function Section({
     e.target.querySelectorAll("form>div").forEach((div, index) => {
       let field = "";
       let info = "";
-      let subInfo = "";
+      let subInfo2 = "";
       let from = "";
       let to = "";
 
@@ -78,8 +78,8 @@ export default function Section({
 
       // subInfoElem either input[type="text"] or textarea
       if (subInfoElem) {
-        subInfo = subInfoElem.value;
-        objToPush = { ...objToPush, subInfo: subInfo };
+        subInfo2 = subInfoElem.value;
+        objToPush = { ...objToPush, subInfo: subInfo2 };
       }
 
       if (fromElem && toElem) {
@@ -97,7 +97,7 @@ export default function Section({
       if (
         field !== "" ||
         info !== "" ||
-        subInfo !== "" ||
+        subInfo2 !== "" ||
         from !== "" ||
         to !== ""
       ) {
@@ -109,10 +109,10 @@ export default function Section({
   }
 
   let singularOtherInfo;
-  if (singular !== "null" && action === "Save") {
+  if (singular !== null && action === "Save") {
     let otherInfo = <div>Información Adicional</div>;
     let interval = null;
-    if (fromToFields === "true") {
+    if (fromToFields === true) {
       interval = <div>Período</div>;
     }
     singularOtherInfo = (
@@ -122,19 +122,19 @@ export default function Section({
         {interval}
       </div>
     );
-  } else if (singular === "null") {
+  } else if (singular === null) {
     singularOtherInfo = null;
   }
 
   let sectionRender;
   if (action === "Save") {
     let addItemButton = null;
-    if (addItemMethod !== "null") {
+    if (addItemMethod !== null) {
       addItemButton = (
         <button
           type="button"
           onClick={() => {
-            addItemMethod(stateName, subInfo === "true");
+            addItemMethod(stateName, subInfo === true);
           }}
         >
           <FontAwesomeIcon icon={faPlus} className="icon" />
@@ -188,14 +188,14 @@ export default function Section({
                 }}
               />
             );
-          } else if (editableFields === "true") {
+          } else if (editableFields === true) {
             fieldRender = (
               <input type="text" defaultValue={item.field} className="field" />
             );
             infoSubinfoRender = (
               <Fragment>
                 <textarea defaultValue={item.info} className="info"></textarea>
-                {subInfo === "true" ? (
+                {subInfo === true ? (
                   <textarea
                     defaultValue={item.subInfo}
                     className="subInfo"
@@ -204,7 +204,7 @@ export default function Section({
                 ) : null}
               </Fragment>
             );
-          } else if (editableFields === "false") {
+          } else if (editableFields === false) {
             notEditableClass = `notEditable${index}`;
             fieldRender = <div className="field">{item.field}</div>;
             if (item.field === "Sitio Web") {
@@ -233,7 +233,7 @@ export default function Section({
           }
 
           let fromToRender = null;
-          if (fromToFields === "true") {
+          if (fromToFields === true) {
             const fromId = `${stateName}${index}from`;
             const toId = `${stateName}${index}to`;
             fromToRender = (
