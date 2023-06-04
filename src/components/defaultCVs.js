@@ -161,7 +161,7 @@ const exampleCV = {
     {
       id: uniqid(),
       field: "FrontEnd",
-      info: "HTML, CSS, JavaScript, CSS en JS, Webpack, React, SVGs"
+      info: "HTML5, CSS3, JavaScript, CSS en JS, Webpack, React, SVGs"
     },
     {
       id: uniqid(),
@@ -190,7 +190,7 @@ const exampleCV = {
       field: "Ingeniería en Electrónica y en Telecomunicaciones",
       info: "Universidad Católica Argentina",
       subInfo:
-        "Cursada finalizada y aprobada\n35 materias aprobadas\nPromedio general: 7.34 / 6 finales pendientes",
+        "Cursada finalizada y aprobada. 35 materias aprobadas. Promedio general: 7.34 / 6 finales pendientes",
       from: "2003",
       to: "2009"
     },
@@ -198,7 +198,7 @@ const exampleCV = {
       id: uniqid(),
       field: "Desarrollador Web Full Stack",
       info: "The Odin Project",
-      subInfo: "",
+      subInfo: "NodeJS Learning Path",
       from: "2022",
       to: "2023"
     }
@@ -234,22 +234,22 @@ const exampleCV = {
       id: uniqid(),
       field: "Diseñador de circuitos impresos",
       info: "Dai-Ichi Circuitos S.A.  -  Fábrica de circuitos impresos (PCB) para electrónica.",
-      subInfo:
-        "Empresa con más de 30 años de experiencia en la fabricación y diseño de circuitos impresos.\nInvestigación y desarrollo en productos innovadores diseñados para cada proyecto.",
+      subInfo: `Empresa con más de 30 años de experiencia en la fabricación y diseño de circuitos impresos.
+Investigación y desarrollo en productos innovadores diseñados para cada proyecto.
+Referencia: Ing. Enrique Shoji.`,
       from: "2002",
       to: "2009"
     },
     {
       id: uniqid(),
-      field: "Creador, administrador y dueño",
+      field: "Propietario y administrador",
       info: "Finca La Venancia",
       subInfo: `Finca Agroecológica de tres hectáreas al pie de la Sierra de Velazco, a 1600msnm.
 Cuenta con, actualmente, más de 100 nogales y más de 150 olivos. La producción anual es de 1000kg de nueces y 3000kg de aceitunas destinadas a aceite y aceitunas negras en salmuera.
 Estos productos son cosechados, envasados y almacenados en las instalaciones de la finca para luego ser comercializados en distintos puntos del país.
-          
 Tareas desempeñadas:
 Creación, administración y dueño de la empresa.
-Cosecha y Riego a través de canales y acequias que bajan de la quebrada. Poda y cuidado de más de 350 árboles de manera anual. Logística con respecto a la recolección y almacenamiento de los frutos.
+Cosecha y Riego a través de canales y acequias que bajan de la quebrada. Poda y abonado natural. Logística con respecto a la recolección y almacenamiento de los frutos.
 Producción: procesamiento de los frutos a su estado final a través de procesos biológicos. Interacción con proveedores de productos químicos y envases para la presentación final.
 Comercialización: interacción con distintos puntos de venta, incluyendo la comercialización en otras provincias a través de encomiendas.`,
       from: "2011",
@@ -257,6 +257,16 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
     }
   ],
   intereses: [
+    {
+      id: uniqid(),
+      field: "Nutrición",
+      info: "Alimentación saludable y sustentable. Nutrición en patologías crónicas prevalentes tal como diabetes."
+    },
+    {
+      id: uniqid(),
+      field: "Ecología y medio ambiente",
+      info: "Protección del medio ambiente. Producción agroecológica"
+    },
     {
       id: uniqid(),
       field: "Ajedrez",
@@ -270,7 +280,7 @@ Comercialización: interacción con distintos puntos de venta, incluyendo la com
     {
       id: uniqid(),
       field: "Carpintería",
-      info: "Muebles rústicos"
+      info: "Muebles artesanales a medida"
     }
   ]
 };

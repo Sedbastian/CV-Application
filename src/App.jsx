@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./App.css";
 import { blankCV, exampleCV } from "./components/defaultCVs";
+import Header from "./components/Header";
 import Section from "./components/Section";
 import Preview from "./components/Preview";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function App() {
@@ -99,20 +99,7 @@ export default function App() {
 
   return (
     <Fragment>
-      <header>
-        <h1>
-          <FontAwesomeIcon icon={faBriefcase} /> CV App
-        </h1>
-        <button className="exampleButton" onClick={loadExample}>
-          Cargar CV de Ejemplo
-        </button>
-        <button className="blankButton" onClick={loadBlank}>
-          Borrar Todo
-        </button>
-        <button onClick={print} className="printButton">
-          Imprimir / Exportar PDF
-        </button>
-      </header>
+      <Header loadExample={loadExample} loadBlank={loadBlank} print={print} />
       <main>
         <Section
           stateName="personal"

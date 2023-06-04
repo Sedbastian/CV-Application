@@ -39,6 +39,7 @@ div#root {
 }
 
 #root > header > button {
+  padding: 0.8rem;
   margin: 0.5rem;
   margin-right: 1rem;
 }
@@ -50,8 +51,9 @@ div#root {
 #root > main {
   grid-row: 2 / 3;
   grid-column: 1 / 2;
+  overflow-x: auto;
   overflow-y: auto;
-
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,6 +92,7 @@ div#root {
 
 main::-webkit-scrollbar {
   width: 18px; /* width of the entire scrollbar */
+  height: 18px;
 }
 
 main::-webkit-scrollbar-track {

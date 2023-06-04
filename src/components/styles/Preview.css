@@ -135,7 +135,7 @@ aside#preview {
 }
 
 #preview > section:not(.personal) {
-  margin-top: 4mm;
+  margin-top: 3mm;
   margin-left: 10mm;
   margin-right: 10mm;
 }
