@@ -108,24 +108,6 @@ export default function Section({
     setAction("Edit");
   }
 
-  let singularOtherInfo;
-  if (singular !== null && action === "Save") {
-    let otherInfo = <div>Información Adicional</div>;
-    let interval = null;
-    if (fromToFields === true) {
-      interval = <div>Período</div>;
-    }
-    singularOtherInfo = (
-      <div className="singInfoInter">
-        <div>{singular}</div>
-        {otherInfo}
-        {interval}
-      </div>
-    );
-  } else if (singular === null) {
-    singularOtherInfo = null;
-  }
-
   let sectionRender;
   if (action === "Save") {
     let addItemButton = null;
@@ -150,9 +132,9 @@ export default function Section({
           let fieldRender;
           let infoSubinfoRender = null;
 
-          let notEditableClass = null;
+          let itemClass = "item";
           if (item.field === "image") {
-            notEditableClass = `notEditable${index}`;
+            itemClass = `notEditable${index}`;
             fieldRender = (
               <input
                 ref={fileInput}
@@ -190,25 +172,41 @@ export default function Section({
             );
           } else if (editableFields === true) {
             fieldRender = (
-              <input type="text" defaultValue={item.field} className="field" />
+              <div className="singularInput">
+                <div className="fieldName">{singular}</div>
+                <input
+                  type="text"
+                  defaultValue={item.field}
+                  className="field"
+                />
+              </div>
             );
             infoSubinfoRender = (
               <Fragment>
-                <textarea defaultValue={item.info} className="info"></textarea>
-                {subInfo === true ? (
+                <div className="infoTextarea">
+                  <div className="fieldName">Información Adicional</div>
                   <textarea
-                    defaultValue={item.subInfo}
-                    className="subInfo"
-                    rows="5"
+                    defaultValue={item.info}
+                    className="info"
                   ></textarea>
+                </div>
+                {subInfo === true ? (
+                  <div className="notesTextarea">
+                    <div className="fieldName">Notas</div>
+                    <textarea
+                      defaultValue={item.subInfo}
+                      className="subInfo"
+                      rows="5"
+                    ></textarea>
+                  </div>
                 ) : null}
               </Fragment>
             );
           } else if (editableFields === false) {
-            notEditableClass = `notEditable${index}`;
+            itemClass = `notEditable${index}`;
             fieldRender = <div className="field">{item.field}</div>;
             if (item.field === "Sitio Web") {
-              notEditableClass = `notEditable${index} website`;
+              itemClass = `notEditable${index} website`;
               infoSubinfoRender = (
                 <div className="webInfo">
                   <div>Nombre</div>
@@ -256,7 +254,7 @@ export default function Section({
             );
           }
           return (
-            <div key={item.id} className={notEditableClass}>
+            <div key={item.id} className={itemClass}>
               {fieldRender}
               {infoSubinfoRender}
               {fromToRender}
@@ -289,7 +287,6 @@ export default function Section({
   return (
     <section className={sectionClass}>
       <h2>{heading}</h2>
-      {singularOtherInfo}
       {sectionRender}
     </section>
   );

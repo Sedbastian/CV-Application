@@ -11,7 +11,7 @@ import {
   faMountain
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Preview(props) {
+export default function Preview({ cv }) {
   const onWheel = e => {
     let topValue = parseInt(e.currentTarget.style.top, 10);
     if (Number.isNaN(topValue)) {
@@ -46,7 +46,7 @@ export default function Preview(props) {
   };
 
   const { personal, habilidades, educacion, idiomas, experiencia, intereses } =
-    props.data;
+    cv;
 
   return (
     <div className="previewContainer">

@@ -156,7 +156,7 @@ export default function App() {
           sectionState={cv.intereses}
         />
       </main>
-      <Preview data={cv} />
+      <Preview cv={cv} />
       <footer className="footerTag">
         <a href="https://github.com/Sedbastian">
           Sedbastian <FontAwesomeIcon icon={faGithub} />

@@ -230,6 +230,7 @@ aside#preview {
   grid-column: 2 / 3;
   font-style: italic;
   font-weight: 600;
+  font-size: 4mm;
 }
 
 #preview > section.educacion .item > div .subInfo,
