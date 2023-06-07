@@ -94,7 +94,7 @@ export default function App() {
     setTimeout(() => {
       newWindow.document.close();
       newWindow.print();
-    }, 300);
+    }, 500);
   }
 
   return (

@@ -49,7 +49,7 @@ aside#preview {
   background-color: white;
   border-style: none;
   box-shadow: none;
-  font-size: 3mm;
+  /* font-size: 3mm; */
 }
 
 #preview > section.personal > div#personal {
@@ -224,9 +224,7 @@ aside#preview {
   white-space: nowrap;
 }
 
-#preview > section.educacion .item > div .info,
-#preview > section.idiomas .item > div .info,
-#preview > section.experiencia .item > div .info {
+#preview div.info {
   grid-column: 2 / 3;
   font-style: italic;
   font-weight: 600;

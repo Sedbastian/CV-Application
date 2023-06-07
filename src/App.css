@@ -25,6 +25,10 @@ body {
     grid-column: 1 / 2 !important;
   }
 
+  #root > header > button.printButton {
+    display: none;
+  }
+
   #root > div.previewContainer {
     display: none;
   }
