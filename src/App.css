@@ -5,6 +5,7 @@
 
 html {
   margin: 0;
+  overflow-y: hidden;
 }
 body {
   margin: 0;
