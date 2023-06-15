@@ -23,6 +23,7 @@ div.previewContainer {
 }
 
 aside#preview {
+  overflow-y: hidden;
   position: relative;
   z-index: 1;
   border: 1px solid white;
